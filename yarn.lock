@@ -1641,6 +1641,7 @@ __metadata:
     "@vitejs/plugin-react": ^1.3.0
     react: ^18.0.0
     react-dom: ^18.0.0
+    tachyons: ^4.12.0
     vite: ^2.9.9
   languageName: unknown
   linkType: soft
@@ -1809,6 +1810,13 @@ __metadata:
   version: 1.0.0
   resolution: "supports-preserve-symlinks-flag@npm:1.0.0"
   checksum: 53b1e247e68e05db7b3808b99b892bd36fb096e6fba213a06da7fab22045e97597db425c724f2bbd6c99a3c295e1e73f3e4de78592289f38431049e1277ca0ae
+  languageName: node
+  linkType: hard
+
+"tachyons@npm:^4.12.0":
+  version: 4.12.0
+  resolution: "tachyons@npm:4.12.0"
+  checksum: 7f31c80eaf5109c1cf4ccf1073b9b9aed8fcae21cd7558101171bbb939256a5a258a04cba8b745d6ba6713ed9328304041dcc666f7eef44950d2bc2fd3c55cbc
   languageName: node
   linkType: hard
 
