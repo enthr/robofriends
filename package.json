@@ -1,5 +1,6 @@
 {
     "name": "robofriends",
+    "homepage": "https://enthr.github.io/robofriends",
     "author": "Jaimin Prajapati",
     "license": "MIT",
     "private": true,
@@ -7,9 +8,12 @@
     "scripts": {
         "dev": "vite",
         "build": "vite build",
-        "preview": "vite preview"
+        "preview": "vite preview",
+        "predeploy": "yarn build",
+        "deploy": "gh-pages -d build"
     },
     "dependencies": {
+        "gh-pages": "^4.0.0",
         "react": "^18.0.0",
         "react-dom": "^18.0.0",
         "tachyons": "^4.12.0"
