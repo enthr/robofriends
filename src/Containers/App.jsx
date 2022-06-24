@@ -1,32 +1,44 @@
-import React, { useState, useEffect, useRef } from "react";
-import "tachyons";
+import React, { useState, useEffect, useRef } from 'react';
+import { connect } from 'react-redux';
+import 'tachyons';
 
-import CardList from "../Components/CardList";
-import SearchBox from "../Components/SearchBox";
-import Scroll from "../Components/Scroll";
+import CardList from '../Components/CardList';
+import SearchBox from '../Components/SearchBox';
+import Scroll from '../Components/Scroll';
+import { requestRobots, setSearchField } from '../actions';
 
-import "./App.css";
+import './App.css';
 
-const App = () => {
+const mapStateToProps = (state) => {
+    return {
+        searchField: state.searchRobots.searchField,
+        robots: state.requestRobots.robots,
+        isPending: state.requestRobots.isPending,
+        error: state.requestRobots.error
+    };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onSearchChange: (e) => dispatch(setSearchField(e.target.value)),
+        onRequestRobots: () => dispatch(requestRobots())
+    };
+};
+
+const App = ({ searchField, onSearchChange, onRequestRobots, robots, isPending }) => {
     const isMounted = useRef(false);
-    const [Robots, setRobots] = useState([]);
-    const [SearchField, setSearchField] = useState("");
 
-    const onSearchChange = (event) => setSearchField(event.target.value);
-
-    const filteredRobots = Robots.filter((Robot) =>
-        Robot.name.toLowerCase().includes(SearchField.toLowerCase())
+    const filteredRobots = robots.filter((Robot) =>
+        Robot.name.toLowerCase().includes(searchField.toLowerCase())
     );
 
     useEffect(() => {
         if (isMounted.current) return;
-        fetch("https://jsonplaceholder.typicode.com/users")
-            .then((res) => res.json())
-            .then((users) => setRobots(users));
+        onRequestRobots();
         isMounted.current = true;
     }, []);
 
-    return !Robots.length ? (
+    return isPending ? (
         <h1 className='tc f1'>Loading...</h1>
     ) : (
         <div className='tc'>
@@ -39,4 +51,4 @@ const App = () => {
     );
 };
 
-export default App;
+export default connect(mapStateToProps, mapDispatchToProps)(App);
